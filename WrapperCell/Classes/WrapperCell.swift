@@ -1,6 +1,5 @@
 //
 //  WrapperCell.swift
-//  IBAMobileBankNetwork
 //
 //  Created by Kenan Alizadeh on 23.01.23.
 //
