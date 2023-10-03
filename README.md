@@ -4,7 +4,31 @@
 
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
 
-## Requirements
+**Easily conform your view to ConfigurableView**
+```swift
+struct TextContent {
+    var string: String
+    var color: UIColor
+    var font: UIFont
+}
+
+extension UILabel: ConfigurableView {
+
+    public struct Item {
+        let content: TextContent
+    }
+
+    public func configure(_ item: Item) {
+        self.setText(content: item.content)
+    }
+
+    public func reset() {
+        self.setText(content: nil)
+    }
+}
+
+typealias LabelCell = WrapperCell<UILabel>
+```
 
 ## Installation
 
