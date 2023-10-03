@@ -2,8 +2,7 @@
 //  AppDelegate.swift
 //  WrapperCell
 //
-//  Created by 004230 on 10/03/2023.
-//  Copyright (c) 2023 004230. All rights reserved.
+//  Created by Kenan Alizadeh on 10/03/2023.
 //
 
 import UIKit
@@ -14,7 +13,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
 
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         return true
     }

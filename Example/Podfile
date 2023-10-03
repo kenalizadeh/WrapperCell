@@ -4,13 +4,11 @@ platform :ios, '10.0'
 
 target 'WrapperCell_Example' do
   pod 'WrapperCell', :path => '../'
+  pod 'Swild'
 
-  target 'WrapperCell_Tests' do
+  target 'WrapperCell_UnitTests' do
     inherit! :search_paths
 
-    pod 'Quick', '~> 2.2.0'
-    pod 'Nimble', '~> 10.0.0'
-    pod 'FBSnapshotTestCase' , '~> 2.1.4'
-    pod 'Nimble-Snapshots' , '~> 9.4.0'
+    pod 'Quick'
   end
 end

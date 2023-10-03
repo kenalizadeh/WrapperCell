@@ -1,0 +1,6 @@
+framework module WrapperCell {
+  umbrella header "WrapperCell-umbrella.h"
+
+  export *
+  module * { export * }
+}
