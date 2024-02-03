@@ -1,5 +1,5 @@
 //
-//  UILabel+ConfigurableView.swift
+//  UILabel+CellWrappedView.swift
 //  WrapperCell_Example
 //
 //  Created by Kenan Alizadeh on 22.04.23.
@@ -8,7 +8,7 @@
 import UIKit
 import WrapperCell
 
-extension UILabel: ConfigurableView {
+extension UILabel: CellWrappedView {
 
     public struct Item {
         let content: TextContent

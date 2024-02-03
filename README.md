@@ -4,7 +4,7 @@
 
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
 
-**Easily conform your view to ConfigurableView**
+**Easily conform your view to CellWrappedView**
 ```swift
 struct TextContent {
     var string: String
@@ -12,7 +12,7 @@ struct TextContent {
     var font: UIFont
 }
 
-extension UILabel: ConfigurableView {
+extension UILabel: CellWrappedView {
 
     public struct Item {
         let content: TextContent

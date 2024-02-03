@@ -1,5 +1,5 @@
 //
-//  UISegmentedControl+ConfigurableView.swift
+//  UISegmentedControl+CellWrappedView.swift
 //  WrapperCell_Example
 //
 //  Created by Kenan Alizadeh on 24.04.23.
@@ -8,7 +8,7 @@
 import UIKit
 import WrapperCell
 
-extension UISegmentedControl: ConfigurableView {
+extension UISegmentedControl: CellWrappedView {
 
     public struct Item {
         let items: [String]

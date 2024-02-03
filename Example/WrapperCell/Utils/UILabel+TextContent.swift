@@ -11,7 +11,7 @@ extension UILabel {
 
     func setText(content: TextContent?) {
 
-        guard var content
+        guard let content
         else {
             self.resetTextContent()
             return
@@ -24,7 +24,7 @@ extension UILabel {
 
     func setAttributedText(content: TextContent?) {
 
-        guard var content
+        guard let content
         else {
             self.resetTextContent()
             return

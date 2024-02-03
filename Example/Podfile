@@ -5,10 +5,4 @@ platform :ios, '10.0'
 target 'WrapperCell_Example' do
   pod 'WrapperCell', :path => '../'
   pod 'Swild'
-
-  target 'WrapperCell_UnitTests' do
-    inherit! :search_paths
-
-    pod 'Quick'
-  end
 end

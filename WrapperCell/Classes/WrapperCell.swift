@@ -6,7 +6,7 @@
 
 import UIKit
 
-public protocol Configurable {
+public protocol CellWrapped {
     associatedtype Item
 
     func configure(_ item: Item)
@@ -14,14 +14,13 @@ public protocol Configurable {
     func reset()
 }
 
-public extension Configurable {
-
+public extension CellWrapped {
     func handleSelection(_ selected: Bool) {}
 }
 
-public protocol ConfigurableView: Configurable, UIView {}
+public protocol CellWrappedView: CellWrapped, UIView {}
 
-public class WrapperTableViewCell<Item>: UITableViewCell, ConfigurableView {
+public class WrapperTableViewCell<Item>: UITableViewCell, CellWrappedView {
     private(set) var item: Item!
 
     public static var uniqueIdentifier: String {
@@ -88,7 +87,7 @@ public struct WrapperCellSeparatorSettings {
     }
 }
 
-public class WrapperCell<View: ConfigurableView>: WrapperTableViewCell<WrapperCellItem<View.Item>> {
+public class WrapperCell<View: CellWrappedView>: WrapperTableViewCell<WrapperCellItem<View.Item>> {
     private var _child: View
     private lazy var separatorView: UIView = {
         let view = UIView()
@@ -100,13 +99,13 @@ public class WrapperCell<View: ConfigurableView>: WrapperTableViewCell<WrapperCe
 
     public var insets: UIEdgeInsets = .zero {
         didSet {
-            updateChildConstraints()
+            self.updateChildConstraints()
         }
     }
 
     public var childHeight: CGFloat? {
         didSet {
-            updateChildConstraints()
+            self.updateChildConstraints()
         }
     }
 
@@ -114,22 +113,22 @@ public class WrapperCell<View: ConfigurableView>: WrapperTableViewCell<WrapperCe
     public required init?(coder: NSCoder) { fatalError("init(coder:) has not been implemented") }
 
     public override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        _child = View.init()
+        self._child = View.init()
 
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         selectionStyle = .none
 
-        _child.translatesAutoresizingMaskIntoConstraints = false
+        self._child.translatesAutoresizingMaskIntoConstraints = false
 
-        contentView.addSubview(_child)
+        contentView.addSubview(self._child)
 
-        updateChildConstraints()
+        self.updateChildConstraints()
     }
 
     public override func prepareForReuse() {
         super.prepareForReuse()
 
-        _child.reset()
+        self._child.reset()
     }
 
     public override func configure(_ item: WrapperCellItem<View.Item>) {
@@ -137,10 +136,10 @@ public class WrapperCell<View: ConfigurableView>: WrapperTableViewCell<WrapperCe
 
         backgroundColor = item.backgroundColor
 
-        insets = item.insets
-        childHeight = item.height
+        self.insets = item.insets
+        self.childHeight = item.height
 
-        setSeparatorVisible(
+        self.setSeparatorVisible(
             item.separatorSettings.isVisible,
             position: item.separatorSettings.position,
             with: item.separatorSettings.insets,
@@ -148,20 +147,20 @@ public class WrapperCell<View: ConfigurableView>: WrapperTableViewCell<WrapperCe
             height: item.separatorSettings.height
         )
 
-        _child.configure(item.item)
+        self._child.configure(item.item)
     }
 
-    private lazy var childHeightConstraint: NSLayoutConstraint = _child.heightAnchor.constraint(equalToConstant: 0)
+    private lazy var childHeightConstraint: NSLayoutConstraint = self._child.heightAnchor.constraint(equalToConstant: 0)
 
     private lazy var childConstraints: [NSLayoutConstraint] = [
-        _child.topAnchor.constraint(equalTo: contentView.topAnchor),
-        _child.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-        _child.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
-        _child.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
+        self._child.topAnchor.constraint(equalTo: contentView.topAnchor),
+        self._child.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+        self._child.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+        self._child.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
     ]
 
     public override var intrinsicContentSize: CGSize {
-        CGRect(origin: .zero, size: _child.intrinsicContentSize).padded(by: insets).size
+        CGRect(origin: .zero, size: self._child.intrinsicContentSize).padded(by: self.insets).size
     }
 
     public override func setSelected(_ selected: Bool, animated: Bool) {
@@ -173,20 +172,20 @@ public class WrapperCell<View: ConfigurableView>: WrapperTableViewCell<WrapperCe
 
 private extension WrapperCell {
     func updateChildConstraints() {
-        zip(childConstraints, [insets.top, insets.left, -insets.right, -insets.bottom])
+        zip(self.childConstraints, [self.insets.top, self.insets.left, -self.insets.right, -self.insets.bottom])
             .forEach { constraint, inset in
                 constraint.constant = inset
             }
 
-        NSLayoutConstraint.activate(childConstraints)
+        NSLayoutConstraint.activate(self.childConstraints)
 
         if let childHeight {
-            childHeightConstraint.constant = childHeight
+            self.childHeightConstraint.constant = childHeight
         }
 
-        childHeightConstraint.isActive = (childHeight != nil)
+        self.childHeightConstraint.isActive = (childHeight != nil)
 
-        setNeedsLayout()
+        self.setNeedsLayout()
     }
 
     func setSeparatorVisible(
@@ -194,18 +193,18 @@ private extension WrapperCell {
         with insets: UIEdgeInsets, color: UIColor,
         height: CGFloat
     ) {
-        separatorView.removeFromSuperview()
+        self.separatorView.removeFromSuperview()
 
         if visible {
-            separatorView.backgroundColor = color
+            self.separatorView.backgroundColor = color
 
-            contentView.addSubview(separatorView)
+            self.contentView.addSubview(self.separatorView)
 
             NSLayoutConstraint.activate([
-                separatorYAxisConstraint(for: position),
-                separatorView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: insets.left),
-                separatorView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -insets.right),
-                separatorView.heightAnchor.constraint(equalToConstant: height)
+                self.separatorYAxisConstraint(for: position),
+                self.separatorView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: insets.left),
+                self.separatorView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -insets.right),
+                self.separatorView.heightAnchor.constraint(equalToConstant: height)
             ])
         }
     }
@@ -217,14 +216,14 @@ private extension WrapperCell {
 
         switch position {
         case .top:
-            from = separatorView.topAnchor
+            from = self.separatorView.topAnchor
             to = topAnchor
-            constant = insets.top
+            constant = self.insets.top
 
         case .bottom:
-            from = separatorView.bottomAnchor
+            from = self.separatorView.bottomAnchor
             to = bottomAnchor
-            constant = -insets.bottom
+            constant = -self.insets.bottom
         }
 
         return from.constraint(equalTo: to, constant: constant)

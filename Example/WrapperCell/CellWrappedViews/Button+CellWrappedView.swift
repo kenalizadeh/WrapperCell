@@ -1,5 +1,5 @@
 //
-//  Button+ConfigurableView.swift
+//  Button+CellWrappedView.swift
 //  WrapperCell_Example
 //
 //  Created by Kenan Alizadeh on 24.04.23.
@@ -8,7 +8,7 @@
 import UIKit
 import WrapperCell
 
-extension Button: ConfigurableView {
+extension Button: CellWrappedView {
 
     public struct Item {
         let text: TextContent

@@ -1,5 +1,5 @@
 //
-//  UITextField+ConfigurableView.swift
+//  UITextField+CellWrappedView.swift
 //  WrapperCell_Example
 //
 //  Created by Kenan Alizadeh on 22.04.23.
@@ -8,7 +8,7 @@
 import UIKit
 import WrapperCell
 
-extension UITextField: ConfigurableView {
+extension UITextField: CellWrappedView {
 
     public struct Item {
         let placeholder: TextContent

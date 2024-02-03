@@ -13,11 +13,11 @@ public extension UITableView {
         register(cellType, forCellReuseIdentifier: cellType.uniqueIdentifier)
     }
 
-    func dequeueReusableCell<V: ConfigurableView>(with item: WrapperCell<V>.Item, for indexPath: IndexPath) -> WrapperCell<V> {
+    func dequeueReusableCell<V: CellWrappedView>(with item: WrapperCell<V>.Item, for indexPath: IndexPath) -> WrapperCell<V> {
         typealias Cell = WrapperCell<V>
 
         let identifier = Cell.uniqueIdentifier
-        let cell = dequeueReusableCell(withIdentifier: identifier, for: indexPath)
+        let cell = self.dequeueReusableCell(withIdentifier: identifier, for: indexPath)
 
         guard let cell = cell as? Cell
         else { fatalError("Unable to dequeue cell type: \(Cell.self) with reuseIdentifier: \(Cell.uniqueIdentifier). Make sure specified cell type is registered.") }

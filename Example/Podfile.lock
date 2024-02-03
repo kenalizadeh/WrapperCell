@@ -1,16 +1,13 @@
 PODS:
-  - Quick (2.2.1)
   - Swild (0.0.1)
   - WrapperCell (0.0.1)
 
 DEPENDENCIES:
-  - Quick
   - Swild
   - WrapperCell (from `../`)
 
 SPEC REPOS:
   trunk:
-    - Quick
     - Swild
 
 EXTERNAL SOURCES:
@@ -18,10 +15,9 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  Quick: f5754d69b7013f5864c29aab9ae6f0c79c5bc200
   Swild: fd03d086052786ba7402141b53db69e94d078e3e
-  WrapperCell: b6a7ceabc91d825d5f421ed440414470274d6cff
+  WrapperCell: a8dd66c2b79ce0883774d7cf2685bac637ae1461
 
-PODFILE CHECKSUM: 4195fb8ea96308732cadb58cd9828dd6cd784001
+PODFILE CHECKSUM: b56537c0f1a421369584d862855417b05b6b6558
 
-COCOAPODS: 1.13.0
+COCOAPODS: 1.15.0

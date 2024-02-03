@@ -1,5 +1,5 @@
 //
-//  UIImageView+ConfigurableView.swift
+//  UIImageView+CellWrappedView.swift
 //  WrapperCell_Example
 //
 //  Created by Kenan Alizadeh on 24.04.23.
@@ -8,7 +8,7 @@
 import UIKit
 import WrapperCell
 
-extension UIImageView: ConfigurableView {
+extension UIImageView: CellWrappedView {
 
     public struct Item {
         let contentMode: UIControl.ContentMode

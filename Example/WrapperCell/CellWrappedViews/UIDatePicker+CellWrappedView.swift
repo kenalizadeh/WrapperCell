@@ -1,5 +1,5 @@
 //
-//  UIDatePicker+ConfigurableView.swift
+//  UIDatePicker+CellWrappedView.swift
 //  WrapperCell_Example
 //
 //  Created by Kenan Alizadeh on 23.04.23.
@@ -8,7 +8,7 @@
 import UIKit
 import WrapperCell
 
-extension UIDatePicker: ConfigurableView {
+extension UIDatePicker: CellWrappedView {
 
     public struct Item {
         let datePickerMode: UIDatePicker.Mode

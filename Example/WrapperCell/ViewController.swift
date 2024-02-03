@@ -34,12 +34,12 @@ private extension ViewController {
 
     func buildTableView(_ v: inout UITableView) {
         v.translatesAutoresizingMaskIntoConstraints = false
-        v.register(LabelCell.self)
         v.delegate = self
         v.dataSource = self
         v.rowHeight = UITableView.automaticDimension
         v.estimatedRowHeight = 60
         v.separatorStyle = .none
+        v.register(LabelCell.self)
         v.register(ButtonCell.self)
         v.register(TextFieldCell.self)
         v.register(DatePickerCell.self)
