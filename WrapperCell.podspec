@@ -20,7 +20,7 @@ Easily turn your `UIView`s into `UITableViewCell`s.
   s.homepage         = 'https://github.com/kenalizadeh/WrapperCell'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'Kenan Alizadeh' => 'kananalizade@gmail.com' }
-  s.source           = { :git => 'git@github.com:kenalizadeh/WrapperCell.git', :tag => s.version.to_s }
+  s.source           = { :git => 'https://github.com/kenalizadeh/WrapperCell.git', :tag => s.version.to_s }
 
   s.source_files = 'WrapperCell/Classes/**/*'
 end
